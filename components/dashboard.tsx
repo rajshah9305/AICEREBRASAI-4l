@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { StudioCard } from "@/components/studio-card"
 import { QuickStats } from "@/components/quick-stats"
 import { RecentActivity } from "@/components/recent-activity"
@@ -46,47 +47,112 @@ export function Dashboard() {
       status: "complete",
       color: "green",
     },
+    {
+      id: "5",
+      title: "Email Campaign Builder",
+      description: "Personalized email sequences with A/B testing optimization",
+      category: "Marketing",
+      progress: 30,
+      lastUsed: "1 week ago",
+      status: "draft",
+      color: "orange",
+    },
+    {
+      id: "6",
+      title: "Research Synthesizer",
+      description: "Academic paper analysis and literature review automation",
+      category: "Research",
+      progress: 60,
+      lastUsed: "2 days ago",
+      status: "active",
+      color: "indigo",
+    },
   ]
 
   return (
     <div className="p-8 space-y-8">
       {/* Welcome Section */}
-      <div className="space-y-2">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
+        className="space-y-2"
+      >
         <h1 className="text-3xl font-bold bg-gradient-to-r from-black via-gray-800 to-orange-600 bg-clip-text text-transparent">
           Welcome back to your Studio
         </h1>
         <p className="text-gray-600">Continue your AI-powered creative workflow or start something new</p>
-      </div>
+      </motion.div>
 
       {/* Quick Stats */}
-      <QuickStats />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0.0, 0.2, 1] }}
+      >
+        <QuickStats />
+      </motion.div>
 
       {/* Studio Grid */}
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
+          className="flex items-center justify-between"
+        >
           <h2 className="text-xl font-semibold">Your Studios</h2>
           <div className="flex gap-2">
-            <button className="px-4 py-2 text-sm bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-4 py-2 text-sm bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors"
+            >
               All
-            </button>
-            <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+            >
               Active
-            </button>
-            <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+            >
               Recent
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {studios.map((studio) => (
-            <StudioCard key={studio.id} studio={studio} />
+          {studios.map((studio, index) => (
+            <motion.div
+              key={studio.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.3 + index * 0.1,
+                ease: [0.4, 0.0, 0.2, 1],
+              }}
+            >
+              <StudioCard studio={studio} />
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Recent Activity */}
-      <RecentActivity />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8, ease: [0.4, 0.0, 0.2, 1] }}
+      >
+        <RecentActivity />
+      </motion.div>
     </div>
   )
 }
