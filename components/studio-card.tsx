@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Play, MoreHorizontal, Clock, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -41,28 +40,13 @@ export function StudioCard({ studio }: StudioCardProps) {
         return "bg-purple-100 text-purple-700 border-purple-200"
       case "green":
         return "bg-green-100 text-green-700 border-green-200"
-      case "indigo":
-        return "bg-indigo-100 text-indigo-700 border-indigo-200"
       default:
         return "bg-gray-100 text-gray-700 border-gray-200"
     }
   }
 
   return (
-    <motion.div
-      whileHover={{
-        y: -4,
-        rotateX: 2,
-        rotateY: 2,
-        scale: 1.02,
-      }}
-      transition={{ duration: 0.2 }}
-      className="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer"
-      style={{
-        transformStyle: "preserve-3d",
-        perspective: "1000px",
-      }}
-    >
+    <div className="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer hover:-translate-y-1">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
@@ -90,11 +74,9 @@ export function StudioCard({ studio }: StudioCardProps) {
           <span className="text-sm font-medium text-orange-600">{studio.progress}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${studio.progress}%` }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full"
+          <div
+            className="bg-gradient-to-r from-orange-400 to-orange-500 h-2 rounded-full transition-all duration-1000"
+            style={{ width: `${studio.progress}%` }}
           />
         </div>
       </div>
@@ -116,6 +98,6 @@ export function StudioCard({ studio }: StudioCardProps) {
           </Button>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }

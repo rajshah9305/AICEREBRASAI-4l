@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { TrendingUp, Zap, Clock, Target } from "lucide-react"
 
 export function QuickStats() {
@@ -52,12 +51,9 @@ export function QuickStats() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {stats.map((stat, index) => (
-        <motion.div
+      {stats.map((stat) => (
+        <div
           key={stat.label}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
           className="bg-white rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300"
         >
           <div className="flex items-center justify-between mb-4">
@@ -71,7 +67,7 @@ export function QuickStats() {
             <div className="text-2xl font-bold mb-1">{stat.value}</div>
             <div className="text-gray-600 text-sm">{stat.label}</div>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   )

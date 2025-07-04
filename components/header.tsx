@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Bell, Search, User, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,7 +14,7 @@ export function Header({ onToggleSidebar, sidebarOpen }: HeaderProps) {
   const [notificationsOpen, setNotificationsOpen] = useState(false)
 
   return (
-    <header className="h-16 border-b border-gray-100 bg-white/80 backdrop-blur-sm flex items-center justify-between px-6 relative z-20">
+    <header className="h-16 border-b border-gray-100 bg-white flex items-center justify-between px-6 relative z-20">
       {/* Left Section */}
       <div className="flex items-center gap-4">
         <Button
@@ -27,23 +26,13 @@ export function Header({ onToggleSidebar, sidebarOpen }: HeaderProps) {
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
 
-        {/* Animated Logo */}
-        <motion.div
-          animate={{
-            scale: [1, 1.02, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="flex items-center gap-2"
-        >
+        {/* Logo */}
+        <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">C</span>
           </div>
           <span className="font-semibold text-lg">Cerebras Studio</span>
-        </motion.div>
+        </div>
       </div>
 
       {/* Center Search */}
@@ -68,21 +57,12 @@ export function Header({ onToggleSidebar, sidebarOpen }: HeaderProps) {
             className="relative hover:bg-orange-50 hover:text-orange-500 transition-colors"
           >
             <Bell className="w-5 h-5" />
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-              className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full"
-            />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full" />
           </Button>
 
           {/* Notification Panel */}
           {notificationsOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute right-0 top-12 w-80 bg-white rounded-lg shadow-xl border border-gray-100 p-4 z-50"
-            >
+            <div className="absolute right-0 top-12 w-80 bg-white rounded-lg shadow-xl border border-gray-100 p-4 z-50">
               <h3 className="font-semibold mb-3">Notifications</h3>
               <div className="space-y-2">
                 <div className="p-3 bg-orange-50 rounded-lg border-l-4 border-orange-400">
@@ -94,7 +74,7 @@ export function Header({ onToggleSidebar, sidebarOpen }: HeaderProps) {
                   <p className="text-xs text-gray-600">New templates are now available</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
 

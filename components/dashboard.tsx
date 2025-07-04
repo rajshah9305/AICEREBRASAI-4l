@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { StudioCard } from "@/components/studio-card"
 import { QuickStats } from "@/components/quick-stats"
 import { RecentActivity } from "@/components/recent-activity"
@@ -47,37 +46,17 @@ export function Dashboard() {
       status: "complete",
       color: "green",
     },
-    {
-      id: "5",
-      title: "Email Campaign Builder",
-      description: "Personalized email sequences with A/B testing optimization",
-      category: "Marketing",
-      progress: 30,
-      lastUsed: "1 week ago",
-      status: "draft",
-      color: "orange",
-    },
-    {
-      id: "6",
-      title: "Research Synthesizer",
-      description: "Academic paper analysis and literature review automation",
-      category: "Research",
-      progress: 60,
-      lastUsed: "2 days ago",
-      status: "active",
-      color: "indigo",
-    },
   ]
 
   return (
     <div className="p-8 space-y-8">
       {/* Welcome Section */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-2">
+      <div className="space-y-2">
         <h1 className="text-3xl font-bold bg-gradient-to-r from-black via-gray-800 to-orange-600 bg-clip-text text-transparent">
           Welcome back to your Studio
         </h1>
         <p className="text-gray-600">Continue your AI-powered creative workflow or start something new</p>
-      </motion.div>
+      </div>
 
       {/* Quick Stats */}
       <QuickStats />
@@ -100,15 +79,8 @@ export function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {studios.map((studio, index) => (
-            <motion.div
-              key={studio.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <StudioCard studio={studio} />
-            </motion.div>
+          {studios.map((studio) => (
+            <StudioCard key={studio.id} studio={studio} />
           ))}
         </div>
       </div>

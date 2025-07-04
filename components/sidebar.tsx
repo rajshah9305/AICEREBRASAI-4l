@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Home, FolderOpen, History, Settings, Plus, ChevronDown, ChevronRight, Search, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -37,10 +36,7 @@ export function Sidebar({ onClose }: SidebarProps) {
     <div className="h-full bg-white border-r border-gray-100 flex flex-col">
       {/* Header */}
       <div className="p-6 border-b border-gray-100">
-        <Button
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-200"
-          onClick={() => {}}
-        >
+        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-200">
           <Plus className="w-4 h-4 mr-2" />
           New Studio
         </Button>
@@ -61,26 +57,20 @@ export function Sidebar({ onClose }: SidebarProps) {
 
       {/* Navigation */}
       <nav className="flex-1 px-4 space-y-1">
-        {navigationItems.map((item, index) => (
-          <motion.div
+        {navigationItems.map((item) => (
+          <Button
             key={item.label}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
+            variant="ghost"
+            className={`w-full justify-start hover:bg-orange-50 hover:text-orange-600 transition-colors ${
+              item.active ? "bg-orange-50 text-orange-600 border-r-2 border-orange-500" : ""
+            }`}
           >
-            <Button
-              variant="ghost"
-              className={`w-full justify-start hover:bg-orange-50 hover:text-orange-600 transition-colors ${
-                item.active ? "bg-orange-50 text-orange-600 border-r-2 border-orange-500" : ""
-              }`}
-            >
-              <item.icon className="w-4 h-4 mr-3" />
-              <span className="flex-1 text-left">{item.label}</span>
-              {item.count && (
-                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">{item.count}</span>
-              )}
-            </Button>
-          </motion.div>
+            <item.icon className="w-4 h-4 mr-3" />
+            <span className="flex-1 text-left">{item.label}</span>
+            {item.count && (
+              <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">{item.count}</span>
+            )}
+          </Button>
         ))}
 
         {/* Projects Section */}
@@ -99,50 +89,38 @@ export function Sidebar({ onClose }: SidebarProps) {
           </Button>
 
           {expandedFolders.includes("recent") && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="ml-6 mt-2 space-y-1"
-            >
-              {projects.map((project, index) => (
-                <motion.div
+            <div className="ml-6 mt-2 space-y-1">
+              {projects.map((project) => (
+                <Button
                   key={project.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="group"
+                  variant="ghost"
+                  className="w-full justify-start text-sm hover:bg-orange-50 hover:text-orange-600 py-2 h-auto"
                 >
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-sm hover:bg-orange-50 hover:text-orange-600 py-2 h-auto"
-                  >
-                    <div className="flex-1 text-left">
-                      <div className="font-medium truncate">{project.name}</div>
-                      <div className="text-xs text-gray-500 flex items-center gap-2">
-                        <span
-                          className={`px-2 py-0.5 rounded-full text-xs ${
-                            project.type === "Active"
-                              ? "bg-green-100 text-green-700"
-                              : project.type === "Complete"
-                                ? "bg-blue-100 text-blue-700"
-                                : "bg-gray-100 text-gray-600"
-                          }`}
-                        >
-                          {project.type}
-                        </span>
-                        <div className="flex-1 bg-gray-200 rounded-full h-1">
-                          <div
-                            className="bg-orange-400 h-1 rounded-full transition-all duration-300"
-                            style={{ width: `${project.progress}%` }}
-                          />
-                        </div>
+                  <div className="flex-1 text-left">
+                    <div className="font-medium truncate">{project.name}</div>
+                    <div className="text-xs text-gray-500 flex items-center gap-2">
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-xs ${
+                          project.type === "Active"
+                            ? "bg-green-100 text-green-700"
+                            : project.type === "Complete"
+                              ? "bg-blue-100 text-blue-700"
+                              : "bg-gray-100 text-gray-600"
+                        }`}
+                      >
+                        {project.type}
+                      </span>
+                      <div className="flex-1 bg-gray-200 rounded-full h-1">
+                        <div
+                          className="bg-orange-400 h-1 rounded-full transition-all duration-300"
+                          style={{ width: `${project.progress}%` }}
+                        />
                       </div>
                     </div>
-                  </Button>
-                </motion.div>
+                  </div>
+                </Button>
               ))}
-            </motion.div>
+            </div>
           )}
         </div>
       </nav>

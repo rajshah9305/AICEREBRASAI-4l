@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { FileText, MessageSquare, Zap, Clock } from "lucide-react"
 
 export function RecentActivity() {
@@ -56,13 +55,7 @@ export function RecentActivity() {
 
       <div className="bg-white rounded-xl border border-gray-100 divide-y divide-gray-50">
         {activities.map((activity, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="p-6 hover:bg-gray-50 transition-colors cursor-pointer"
-          >
+          <div key={index} className="p-6 hover:bg-gray-50 transition-colors cursor-pointer">
             <div className="flex items-start gap-4">
               <div className={`p-2 rounded-lg ${getColorClasses(activity.color)}`}>
                 <activity.icon className="w-4 h-4" />
@@ -77,7 +70,7 @@ export function RecentActivity() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
